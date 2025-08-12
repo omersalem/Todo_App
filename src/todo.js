@@ -64,22 +64,34 @@ function createTaskElement(task) {
   card.id = task.id;
   // Add base classes for styling the card.
   card.classList.add(
-    "h-40", "rounded", "hover:shadow-amber-500", "shadow-2xl", "bg-gray-300",
-    "flex", "flex-col", "justify-between", "todo-card"
+    "bg-gray-800",
+    "rounded-lg",
+    "p-4",
+    "shadow-lg",
+    "flex",
+    "flex-col",
+    "justify-between",
+    "transition-transform",
+    "transform",
+    "hover:scale-105",
+    "todo-card",
+    "fade-in"
   );
 
   // Populate the card's inner HTML.
   card.innerHTML = `
     <div>
-      <h2 class="text-xl font-bold text-blue-950 p-2 border-b-2 border-blue-950 todo-title-output">${task.title}</h2>
-      <p class="text-sm break-words text-blue-950 p-2 todo-description-output">${task.contents}</p>
+      <h2 class="text-xl font-bold text-white p-2 border-b-2 border-gray-700 todo-title-output">${task.title}</h2>
+      <p class="text-sm break-words text-gray-300 p-2 todo-description-output">${task.contents}</p>
     </div>
     <div class="flex justify-between items-center gap-2 p-2">
-      <div class="text-xs text-gray-600">${new Date(task.createdDate).toLocaleDateString()}</div>
-      <div class="flex justify-end gap-2 p-2">
-        <i class="fa-solid fa-check hover:cursor-pointer text-green-500 todo-check-icon"></i>
-        <i class="fa-solid fa-pencil hover:cursor-pointer text-blue-500 todo-edit-icon"></i>
-        <i class="fa-solid fa-trash hover:cursor-pointer text-red-500 todo-delete-icon"></i>
+      <div class="text-xs text-gray-400">${new Date(
+        task.createdDate
+      ).toLocaleDateString()}</div>
+      <div class="flex justify-end gap-4 p-2">
+        <i class="fa-solid fa-check hover:cursor-pointer text-green-500 hover:text-green-400 todo-check-icon"></i>
+        <i class="fa-solid fa-pencil hover:cursor-pointer text-blue-500 hover:text-blue-400 todo-edit-icon"></i>
+        <i class="fa-solid fa-trash hover:cursor-pointer text-red-500 hover:text-red-400 todo-delete-icon"></i>
       </div>
     </div>
   `;
@@ -98,22 +110,22 @@ function createTaskElement(task) {
  * @param {boolean} isCompleted - The completion status of the task.
  */
 function updateTaskAppearance(card, isCompleted) {
-    const checkIcon = card.querySelector(".todo-check-icon");
-    const todoTitle = card.querySelector(".todo-title-output");
+  const checkIcon = card.querySelector(".todo-check-icon");
+  const todoTitle = card.querySelector(".todo-title-output");
 
-    if (isCompleted) {
-        card.classList.remove("bg-gray-300");
-        card.classList.add("bg-green-500");
-        checkIcon.classList.remove("text-green-500");
-        checkIcon.classList.add("text-black");
-        todoTitle.classList.add("line-through");
-    } else {
-        card.classList.remove("bg-green-500");
-        card.classList.add("bg-gray-300");
-        checkIcon.classList.remove("text-black");
-        checkIcon.classList.add("text-green-500");
-        todoTitle.classList.remove("line-through");
-    }
+  if (isCompleted) {
+    card.classList.remove("bg-gray-800");
+    card.classList.add("bg-green-900");
+    checkIcon.classList.remove("text-green-500");
+    checkIcon.classList.add("text-white");
+    todoTitle.classList.add("line-through");
+  } else {
+    card.classList.remove("bg-green-900");
+    card.classList.add("bg-gray-800");
+    checkIcon.classList.remove("text-white");
+    checkIcon.classList.add("text-green-500");
+    todoTitle.classList.remove("line-through");
+  }
 }
 
 
